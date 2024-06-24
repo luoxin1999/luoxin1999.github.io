@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>hexo markdown order list | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="hexo + markdown 使用简明手册创建新的文章123#在hexo的文件夹下执行hexo new post &quot;文章名称&quot;#执行之后会在.&#x2F;source&#x2F;_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章  删除旧的静态网页123#想要构建新的网页就要把旧的删掉#在hexo的文件夹下执行hexo clean  构建新的静态网页12#在hexo的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo markdown order list">
+<meta property="og:url" content="http://example.com/2024/06/24/hexo-markdown-order-list/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="hexo + markdown 使用简明手册创建新的文章123#在hexo的文件夹下执行hexo new post &quot;文章名称&quot;#执行之后会在.&#x2F;source&#x2F;_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章  删除旧的静态网页123#想要构建新的网页就要把旧的删掉#在hexo的文件夹下执行hexo clean  构建新的静态网页12#在hexo的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-24T14:28:58.000Z">
+<meta property="article:modified_time" content="2024-06-24T14:35:51.853Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -67,9 +71,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hexo-markdown-order-list" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-hexo-markdown-order-list" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/24/hexo-markdown-order-list/" class="article-date">
   <time class="dt-published" datetime="2024-06-24T14:28:58.000Z" itemprop="datePublished">2024-06-24</time>
@@ -82,8 +84,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/24/hexo-markdown-order-list/">hexo markdown order list</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      hexo markdown order list
     </h1>
   
 
@@ -109,105 +111,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-note" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/24/note/" class="article-date">
-  <time class="dt-published" datetime="2024-06-24T14:11:04.000Z" itemprop="datePublished">2024-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/24/note/">note</a>
-    </h1>
+    <a href="/2024/06/24/note/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">note</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="VMware-虚拟机只有一个环回网口解决办法"><a href="#VMware-虚拟机只有一个环回网口解决办法" class="headerlink" title="VMware 虚拟机只有一个环回网口解决办法"></a>VMware 虚拟机只有一个环回网口解决办法</h1><p>这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。</p>
-<p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说吧。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先启动ens33</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">调用DHCP获取IP地址</span></span><br><span class="line">dhclient</span><br></pre></td></tr></table></figure>
-
-<p>这样就成了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/24/note/" data-id="clxt2yxl00002majxch5505xn" data-title="note" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/24/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2024-06-24T13:55:41.792Z" itemprop="datePublished">2024-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/24/hello-world/" data-id="clxt2yxkl0000majx0hatgj2s" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
