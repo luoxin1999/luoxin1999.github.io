@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2024/06/23/note/</loc>
+    <loc>http://example.com/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/</loc>
     
     <lastmod>2024-06-25</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/</loc>
+    <loc>http://example.com/2024/06/23/note/</loc>
     
     <lastmod>2024-06-25</lastmod>
     
@@ -56,14 +56,14 @@
 
   
   <url>
-    <loc>http://example.com/tags/hexo/</loc>
+    <loc>http://example.com/tags/Internet/</loc>
     <lastmod>2024-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Internet/</loc>
+    <loc>http://example.com/tags/hexo/</loc>
     <lastmod>2024-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -40,7 +40,17 @@
     lang   : 'zh-CN'
   };
 </script>
-
+<!-- 文章加密 -->
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
   <title>菜鸟成牛传</title>
   
 
@@ -167,7 +177,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/site/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="lx">
       <meta itemprop="description" content="">
     </span>
@@ -195,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-25 11:22:27" itemprop="dateModified" datetime="2024-06-25T11:22:27+08:00">2024-06-25</time>
+                <time title="修改时间：2024-06-25 11:40:29" itemprop="dateModified" datetime="2024-06-25T11:40:29+08:00">2024-06-25</time>
               </span>
 
           
@@ -209,7 +219,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo new post &quot;文章名称&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行之后会在./source/_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章</span></span><br></pre></td></tr></table></figure>
+          <p>password: password</p>
+<h2 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo new post &quot;文章名称&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行之后会在./source/_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="删除旧的静态网页"><a href="#删除旧的静态网页" class="headerlink" title="删除旧的静态网页"></a>删除旧的静态网页</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">想要构建新的网页就要把旧的删掉</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p><img src="/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/Snipaste_2024-06-24_22-44-05.png"></p>
@@ -240,7 +251,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/23/note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/site/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="lx">
       <meta itemprop="description" content="">
     </span>
@@ -360,8 +371,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="lx"
-      src="/images/site/avatar.jpeg">
   <p class="site-author-name" itemprop="name">lx</p>
   <div class="site-description" itemprop="description"></div>
 </div>

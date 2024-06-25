@@ -45,7 +45,17 @@
     lang   : 'zh-CN'
   };
 </script>
-
+<!-- 文章加密 -->
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
   <title>VMware 虚拟机只有一个环回网口解决办法 | 菜鸟成牛传</title>
   
 
@@ -173,7 +183,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/23/note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/site/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="lx">
       <meta itemprop="description" content="">
     </span>
@@ -305,8 +315,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="lx"
-      src="/images/site/avatar.jpeg">
   <p class="site-author-name" itemprop="name">lx</p>
   <div class="site-description" itemprop="description"></div>
 </div>
