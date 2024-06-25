@@ -1253,7 +1253,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #65ff9f;
+  background: #46a19c;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2474,4 +2474,12 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.post-block {
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.post-body img {
+  border-radius: 1em;
 }
