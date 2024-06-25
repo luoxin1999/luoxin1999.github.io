@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>hexo + markdown 简明使用指令集</title>
+    <url>/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/</url>
+    <content><![CDATA[<h2 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo new post &quot;文章名称&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行之后会在./source/_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="删除旧的静态网页"><a href="#删除旧的静态网页" class="headerlink" title="删除旧的静态网页"></a>删除旧的静态网页</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">想要构建新的网页就要把旧的删掉</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/Snipaste_2024-06-24_22-44-05.png"></p>
+<h2 id="构建新的静态网页"><a href="#构建新的静态网页" class="headerlink" title="构建新的静态网页"></a>构建新的静态网页</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/Snipaste_2024-06-24_22-46-25.png"></p>
+<p>可以看到生成了很多网页的资源，生成的静态网页放在.&#x2F;public文件夹下</p>
+<p><img src="/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/Snipaste_2024-06-24_22-48-14.png"></p>
+<h2 id="上传新的静态网页"><a href="#上传新的静态网页" class="headerlink" title="上传新的静态网页"></a>上传新的静态网页</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VMware 虚拟机只有一个环回网口解决办法</title>
+    <url>/2024/06/23/note/</url>
+    <content><![CDATA[<h1 id="VMware-虚拟机只有一个环回网口解决办法"><a href="#VMware-虚拟机只有一个环回网口解决办法" class="headerlink" title="VMware 虚拟机只有一个环回网口解决办法"></a>VMware 虚拟机只有一个环回网口解决办法</h1><p>这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。</p>
+<p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说吧。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先启动ens33</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">调用DHCP获取IP地址</span></span><br><span class="line">dhclient</span><br></pre></td></tr></table></figure>
+
+<p>这样就成了。</p>
+]]></content>
+      <tags>
+        <tag>Internet</tag>
+      </tags>
+  </entry>
+</search>
