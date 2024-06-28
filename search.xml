@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>QEMU PCI 设备学习笔记</title>
+    <url>/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="PCI-设备寄存器初始化过程"><a href="#PCI-设备寄存器初始化过程" class="headerlink" title="PCI 设备寄存器初始化过程"></a>PCI 设备寄存器初始化过程</h1><h1 id="xio3130-upstream-设备初始化过程"><a href="#xio3130-upstream-设备初始化过程" class="headerlink" title="xio3130_upstream 设备初始化过程"></a>xio3130_upstream 设备初始化过程</h1><p>函数调用链： </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">type_init(xio3130_upstream_register_types) -&gt; type_register_static(&amp;xio3130_upstream_info); -&gt; xio3130_upstream_class_init(ObjectClass *klass, <span class="type">void</span> *data)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>pci 设备主要有两个成员变量–DeviceClass、PCIDeviceClass</p>
+<p>初始化这个两个成员变量的过程如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">xio3130_upstream_class_init</span><span class="params">(ObjectClass *klass, <span class="type">void</span> *data)</span></span><br><span class="line">&#123;</span><br><span class="line">    DeviceClass *dc = DEVICE_CLASS(klass);</span><br><span class="line">    PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);</span><br><span class="line"></span><br><span class="line">    k-&gt;is_bridge = <span class="literal">true</span>;</span><br><span class="line">    k-&gt;config_write = xio3130_upstream_write_config;</span><br><span class="line">    k-&gt;realize = xio3130_upstream_realize;</span><br><span class="line">    k-&gt;<span class="built_in">exit</span> = xio3130_upstream_exitfn;</span><br><span class="line">    k-&gt;vendor_id = PCI_VENDOR_ID_TI;</span><br><span class="line">    k-&gt;device_id = PCI_DEVICE_ID_TI_XIO3130U;</span><br><span class="line">    k-&gt;revision = XIO3130_REVISION;</span><br><span class="line">    set_bit(DEVICE_CATEGORY_BRIDGE, dc-&gt;categories);</span><br><span class="line">    dc-&gt;desc = <span class="string">&quot;TI X3130 Upstream Port of PCI Express Switch&quot;</span>;</span><br><span class="line">    dc-&gt;reset = xio3130_upstream_reset;</span><br><span class="line">    dc-&gt;vmsd = &amp;vmstate_xio3130_upstream;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>xio3130_upstream 有一个父类————PCIEPort，从</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> TypeInfo xio3130_upstream_info = &#123;</span><br><span class="line">    .name          = <span class="string">&quot;x3130-upstream&quot;</span>,</span><br><span class="line">    .parent        = TYPE_PCIE_PORT,</span><br></pre></td></tr></table></figure>
+<p>就可以看出来。同理可以看出来 PCIEPort的父类是PCIBridge，PCIBridge的父类是抽象类PCIDevice。</p>
+]]></content>
+      <tags>
+        <tag>QEMU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo + markdown 简明使用指令集</title>
     <url>/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/</url>
     <content><![CDATA[<h2 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在hexo的文件夹下执行</span></span><br><span class="line">hexo new post &quot;文章名称&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行之后会在./source/_posts下面生成一个 文章名称.md 的文件，这个就是markdown文章</span></span><br></pre></td></tr></table></figure>
@@ -22,10 +40,18 @@
     <title>VMware 虚拟机只有一个环回网口解决办法</title>
     <url>/2024/06/23/note/</url>
     <content><![CDATA[<h1 id="VMware-虚拟机只有一个环回网口解决办法"><a href="#VMware-虚拟机只有一个环回网口解决办法" class="headerlink" title="VMware 虚拟机只有一个环回网口解决办法"></a>VMware 虚拟机只有一个环回网口解决办法</h1><p>这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。</p>
-<p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说吧。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先启动ens33</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">调用DHCP获取IP地址</span></span><br><span class="line">dhclient</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/06/23/note/no_ens33.png"></p>
+<p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说。</p>
+<p>先启动ens33</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ifconfig ens33 up</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><img src="/2024/06/23/note/ens33_up.png"></p>
+<p>调用DHCP获取IP地址</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dhclient</span><br></pre></td></tr></table></figure>
 
+<p><img src="/2024/06/23/note/dhclient.png"></p>
 <p>这样就成了。</p>
+<p>之后尝试解决开机不能自动获取ip的问题 以及 设置为静态ip。</p>
 ]]></content>
       <tags>
         <tag>Internet</tag>

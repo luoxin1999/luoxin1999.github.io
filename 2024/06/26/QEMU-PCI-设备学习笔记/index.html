@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://example.com/categories/index.html">
+  <meta name="description" content="PCI 设备寄存器初始化过程xio3130_upstream 设备初始化过程函数调用链：  1type_init(xio3130_upstream_register_types) -&gt; type_register_static(&amp;xio3130_upstream_info); -&gt; xio3130_upstream_class_init(ObjectClass *klass,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QEMU PCI 设备学习笔记">
+<meta property="og:url" content="http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="菜鸟成牛传">
+<meta property="og:description" content="PCI 设备寄存器初始化过程xio3130_upstream 设备初始化过程函数调用链：  1type_init(xio3130_upstream_register_types) -&gt; type_register_static(&amp;xio3130_upstream_info); -&gt; xio3130_upstream_class_init(ObjectClass *klass,">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-24T10:28:00.000Z">
-<meta property="article:modified_time" content="2024-06-25T01:28:00.524Z">
+<meta property="article:published_time" content="2024-06-26T11:31:05.000Z">
+<meta property="article:modified_time" content="2024-06-26T11:31:05.000Z">
 <meta property="article:author" content="lx">
+<meta property="article:tag" content="QEMU">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/">
+<link rel="canonical" href="http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -38,7 +41,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
@@ -56,8 +59,7 @@
 </script>
 
 -->
-  <title>categories | 菜鸟成牛传
-</title>
+  <title>QEMU PCI 设备学习笔记 | 菜鸟成牛传</title>
   
 
 
@@ -173,43 +175,122 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lx">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸟成牛传">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QEMU PCI 设备学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-06-26 19:31:05" itemprop="dateCreated datePublished" datetime="2024-06-26T19:31:05+08:00">2024-06-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="PCI-设备寄存器初始化过程"><a href="#PCI-设备寄存器初始化过程" class="headerlink" title="PCI 设备寄存器初始化过程"></a>PCI 设备寄存器初始化过程</h1><h1 id="xio3130-upstream-设备初始化过程"><a href="#xio3130-upstream-设备初始化过程" class="headerlink" title="xio3130_upstream 设备初始化过程"></a>xio3130_upstream 设备初始化过程</h1><p>函数调用链： </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type_init(xio3130_upstream_register_types) -&gt; type_register_static(&amp;xio3130_upstream_info); -&gt; xio3130_upstream_class_init(ObjectClass *klass, <span class="type">void</span> *data)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>pci 设备主要有两个成员变量–DeviceClass、PCIDeviceClass</p>
+<p>初始化这个两个成员变量的过程如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">xio3130_upstream_class_init</span><span class="params">(ObjectClass *klass, <span class="type">void</span> *data)</span></span><br><span class="line">&#123;</span><br><span class="line">    DeviceClass *dc = DEVICE_CLASS(klass);</span><br><span class="line">    PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);</span><br><span class="line"></span><br><span class="line">    k-&gt;is_bridge = <span class="literal">true</span>;</span><br><span class="line">    k-&gt;config_write = xio3130_upstream_write_config;</span><br><span class="line">    k-&gt;realize = xio3130_upstream_realize;</span><br><span class="line">    k-&gt;<span class="built_in">exit</span> = xio3130_upstream_exitfn;</span><br><span class="line">    k-&gt;vendor_id = PCI_VENDOR_ID_TI;</span><br><span class="line">    k-&gt;device_id = PCI_DEVICE_ID_TI_XIO3130U;</span><br><span class="line">    k-&gt;revision = XIO3130_REVISION;</span><br><span class="line">    set_bit(DEVICE_CATEGORY_BRIDGE, dc-&gt;categories);</span><br><span class="line">    dc-&gt;desc = <span class="string">&quot;TI X3130 Upstream Port of PCI Express Switch&quot;</span>;</span><br><span class="line">    dc-&gt;reset = xio3130_upstream_reset;</span><br><span class="line">    dc-&gt;vmsd = &amp;vmstate_xio3130_upstream;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>xio3130_upstream 有一个父类————PCIEPort，从</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> TypeInfo xio3130_upstream_info = &#123;</span><br><span class="line">    .name          = <span class="string">&quot;x3130-upstream&quot;</span>,</span><br><span class="line">    .parent        = TYPE_PCIE_PORT,</span><br></pre></td></tr></table></figure>
+<p>就可以看出来。同理可以看出来 PCIEPort的父类是PCIBridge，PCIBridge的父类是抽象类PCIDevice。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">要不看点其他的吧?..</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2024/06/23/hexo-markdown-简明使用指令集/" rel="bookmark">hexo + markdown 简明使用指令集</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2024/06/23/note/" rel="bookmark">VMware 虚拟机只有一个环回网口解决办法</a></div>
+    </li>
+  </ul>
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>再接再厉-------------</div>
+    
 </div>
 
-</header>
 
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+<div class="my_post_copyright">
+    <p><span>本文标题:</span><a href="/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">QEMU PCI 设备学习笔记</a></p>
+    <p><span>文章作者:</span><a href="/" title="访问 lx 的个人博客">lx</a></p>
+    <p><span>发布时间:</span>2024年06月26日 - 19:06</p>
+    <p><span>最后更新:</span>2024年06月26日 - 19:06</p>
+    <p><span>原始链接:</span><a href="/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="QEMU PCI 设备学习笔记">http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+    <p><span>许可协议:</span><i class="fab fa-creative-commons"></i>
+        <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"
+            title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+            署名-非商业性使用-禁止演绎 4.0 国际</a>
+        转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/QEMU/" rel="tag"># QEMU</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/23/hexo-markdown-%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E9%9B%86/" rel="prev" title="hexo + markdown 简明使用指令集">
+      <i class="fa fa-chevron-left"></i> hexo + markdown 简明使用指令集
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
 
 
           </div>
@@ -260,6 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PCI-%E8%AE%BE%E5%A4%87%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">PCI 设备寄存器初始化过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xio3130-upstream-%E8%AE%BE%E5%A4%87%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">xio3130_upstream 设备初始化过程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-06-25T06:03:15.232Z</updated>
+  <updated>2024-06-26T11:31:05.000Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QEMU PCI 设备学习笔记</title>
+    <link href="http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://example.com/2024/06/26/QEMU-PCI-%E8%AE%BE%E5%A4%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-06-26T11:31:05.000Z</published>
+    <updated>2024-06-26T11:31:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PCI-设备寄存器初始化过程"><a href="#PCI-设备寄存器初始化过程" class="headerlink" title="PCI 设备寄存器初始化过程"></a>PCI 设备寄存器初始化过程</h1><h1 id="xio3130-upstream-设备初始化过程"><a href="#xio3130-upstream-设备初始化过程" class="headerlink" title="xio3130_upstream 设备初始化过程"></a>xio3130_upstream 设备初始化过程</h1><p>函数调用链： </p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type_init(xio3130_upstream_register_types) -&gt; type_register_static(&amp;xio3130_upstream_info); -&gt; xio3130_upstream_class_init(ObjectClass *klass, <span class="type">void</span> *data)</span><br></pre></td></tr></table></figure><span id="more"></span><p>pci 设备主要有两个成员变量–DeviceClass、PCIDeviceClass</p><p>初始化这个两个成员变量的过程如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">xio3130_upstream_class_init</span><span class="params">(ObjectClass *klass, <span class="type">void</span> *data)</span></span><br><span class="line">&#123;</span><br><span class="line">    DeviceClass *dc = DEVICE_CLASS(klass);</span><br><span class="line">    PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);</span><br><span class="line"></span><br><span class="line">    k-&gt;is_bridge = <span class="literal">true</span>;</span><br><span class="line">    k-&gt;config_write = xio3130_upstream_write_config;</span><br><span class="line">    k-&gt;realize = xio3130_upstream_realize;</span><br><span class="line">    k-&gt;<span class="built_in">exit</span> = xio3130_upstream_exitfn;</span><br><span class="line">    k-&gt;vendor_id = PCI_VENDOR_ID_TI;</span><br><span class="line">    k-&gt;device_id = PCI_DEVICE_ID_TI_XIO3130U;</span><br><span class="line">    k-&gt;revision = XIO3130_REVISION;</span><br><span class="line">    set_bit(DEVICE_CATEGORY_BRIDGE, dc-&gt;categories);</span><br><span class="line">    dc-&gt;desc = <span class="string">&quot;TI X3130 Upstream Port of PCI Express Switch&quot;</span>;</span><br><span class="line">    dc-&gt;reset = xio3130_upstream_reset;</span><br><span class="line">    dc-&gt;vmsd = &amp;vmstate_xio3130_upstream;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>xio3130_upstream 有一个父类————PCIEPort，从</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> TypeInfo xio3130_upstream_info = &#123;</span><br><span class="line">    .name          = <span class="string">&quot;x3130-upstream&quot;</span>,</span><br><span class="line">    .parent        = TYPE_PCIE_PORT,</span><br></pre></td></tr></table></figure><p>就可以看出来。同理可以看出来 PCIEPort的父类是PCIBridge，PCIBridge的父类是抽象类PCIDevice。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;PCI-设备寄存器初始化过程&quot;&gt;&lt;a href=&quot;#PCI-设备寄存器初始化过程&quot; class=&quot;headerlink&quot; title=&quot;PCI 设备寄存器初始化过程&quot;&gt;&lt;/a&gt;PCI 设备寄存器初始化过程&lt;/h1&gt;&lt;h1 id=&quot;xio3130-upstream-设备初始化过程&quot;&gt;&lt;a href=&quot;#xio3130-upstream-设备初始化过程&quot; class=&quot;headerlink&quot; title=&quot;xio3130_upstream 设备初始化过程&quot;&gt;&lt;/a&gt;xio3130_upstream 设备初始化过程&lt;/h1&gt;&lt;p&gt;函数调用链： &lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;type_init(xio3130_upstream_register_types) -&amp;gt; type_register_static(&amp;amp;xio3130_upstream_info); -&amp;gt; xio3130_upstream_class_init(ObjectClass *klass, &lt;span class=&quot;type&quot;&gt;void&lt;/span&gt; *data)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="QEMU" scheme="http://example.com/tags/QEMU/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo + markdown 简明使用指令集</title>
@@ -40,15 +60,16 @@
     <link href="http://example.com/2024/06/23/note/"/>
     <id>http://example.com/2024/06/23/note/</id>
     <published>2024-06-23T23:11:04.000Z</published>
-    <updated>2024-06-25T05:45:35.420Z</updated>
+    <updated>2024-06-28T01:06:58.255Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="VMware-虚拟机只有一个环回网口解决办法"><a href="#VMware-虚拟机只有一个环回网口解决办法" class="headerlink" title="VMware 虚拟机只有一个环回网口解决办法"></a>VMware 虚拟机只有一个环回网口解决办法</h1><p>这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。</p><p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说吧。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先启动ens33</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">调用DHCP获取IP地址</span></span><br><span class="line">dhclient</span><br></pre></td></tr></table></figure><p>这样就成了。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="VMware-虚拟机只有一个环回网口解决办法"><a href="#VMware-虚拟机只有一个环回网口解决办法" class="headerlink" title="VMware 虚拟机只有一个环回网口解决办法"></a>VMware 虚拟机只有一个环回网口解决办法</h1><p>这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。</p><p><img src="/2024/06/23/note/no_ens33.png"></p><p>后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说。</p><p>先启动ens33</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig ens33 up</span><br></pre></td></tr></table></figure><span id="more"></span><p><img src="/2024/06/23/note/ens33_up.png"></p><p>调用DHCP获取IP地址</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dhclient</span><br></pre></td></tr></table></figure><p><img src="/2024/06/23/note/dhclient.png"></p><p>这样就成了。</p><p>之后尝试解决开机不能自动获取ip的问题 以及 设置为静态ip。</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;VMware-虚拟机只有一个环回网口解决办法&quot;&gt;&lt;a href=&quot;#VMware-虚拟机只有一个环回网口解决办法&quot; class=&quot;headerlink&quot; title=&quot;VMware 虚拟机只有一个环回网口解决办法&quot;&gt;&lt;/a&gt;VMware 虚拟机只有一个环回网口解决</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;VMware-虚拟机只有一个环回网口解决办法&quot;&gt;&lt;a href=&quot;#VMware-虚拟机只有一个环回网口解决办法&quot; class=&quot;headerlink&quot; title=&quot;VMware 虚拟机只有一个环回网口解决办法&quot;&gt;&lt;/a&gt;VMware 虚拟机只有一个环回网口解决办法&lt;/h1&gt;&lt;p&gt;这两天每次启动VM和vscode的时候总会发现vscode连接不上vm，排查之后（ifconfig）发现vm里面只有一个环回网口（127.0.0.1）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2024/06/23/note/no_ens33.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;后来了解到是没有启动ens33网口。这个网口是以太网的网口，为啥没有启动呢？不理解，先解决再说。&lt;/p&gt;
+&lt;p&gt;先启动ens33&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo ifconfig ens33 up&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
     
     
     
